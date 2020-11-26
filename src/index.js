@@ -93,3 +93,21 @@ app.delete("/:id", async (req, res) => {
         res.status(400).send({ err: err.message })
     }
 });
+
+// gets person by its id and returns this person's address
+app.post("/address", async (req, res) => {
+    let findAddress = req.body;
+
+    try {
+        let data = await readFile(global.fileName, "utf8");
+        let json = JSON.parse(data);
+
+        let requestedCep = json.orders.find(
+            (order) => order.cep === findAddress.cep
+        );
+        
+        axios.get(`https://brasilapi.com.br/api/cep/v1/${requestedCep.cep}`).then(value => {res.send(value.data)});
+    } catch (err) {
+        res.status(400).send({ err: err.message });
+    }
+});
