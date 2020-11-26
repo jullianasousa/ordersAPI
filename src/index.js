@@ -74,3 +74,22 @@ app.put("/order", async (req, res) => {
         res.status(400).send({ err: err.message })
     }
 });
+
+// deletes an order according to its id
+app.delete("/:id", async (req, res) => {
+    try{
+        let data = await readFile(global.fileName, "utf8");
+        let json = JSON.parse(data);
+
+        let allOrders = json.orders.filter(
+            (order) => order.id !== parseInt(req.params.id, 10)
+        );
+        json.orders = allOrders;
+
+        await writeFile(global.fileName, JSON.stringify(json));
+
+        res.send(`${req.params.id} foi excluído`);
+    } catch(err) {
+        res.status(400).send({ err: err.message })
+    }
+});
