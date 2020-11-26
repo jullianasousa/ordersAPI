@@ -35,3 +35,21 @@ app.get("/:id", async (req, res) => {
         res.status(400).send({ err: err.message });
     }
 });
+
+// creates a new order with an id, product, buyer's name, email and cep
+app.post("/order", async (req, res) => {
+    let order = req.body;
+    try {
+        let data = await readFile(global.fileName, "utf8");
+        let json = JSON.parse(data);
+
+        order = { id: json.nextId, ...order };
+        json.orders.push(order);
+        json.nextId++;
+
+        await writeFile(global.fileName, JSON.stringify(json));
+        res.send("Order successfully added!");
+    } catch (err) {
+        res.status(400).send({ err: err.message });
+    }
+});
