@@ -53,3 +53,24 @@ app.post("/order", async (req, res) => {
         res.status(400).send({ err: err.message });
     }
 });
+
+// updates order according to its id
+app.put("/order", async (req, res) => {
+    let newOrder = req.body;
+    try{
+        let data = await readFile(global.fileName, "utf8");
+        let json = JSON.parse(data);
+
+        let index = json.orders.findIndex((order) => order.id === newOrder.id);
+
+        json.orders[index].product = newOrder.product;
+        json.orders[index].buyer = newOrder.buyer;
+        json.orders[index].email = newOrder.email;
+        json.orders[index].cep = newOrder.cep;
+
+        await writeFile(global.fileName, JSON.stringify(json));
+        res.send("Order updated sucessfully! \nThe new order is: " + JSON.stringify(newOrder));
+    } catch(err) {
+        res.status(400).send({ err: err.message })
+    }
+});
