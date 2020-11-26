@@ -1,0 +1,19 @@
+{
+    "nextId": 3,
+    "orders": [
+        {
+            "id": 1,
+            "product": "Lipstick Perfect Sun",
+            "buyer": "Rose Bloom",
+            "email": "rosebloom@gmail.com",
+            "cep": "05010000"
+        },
+        {
+            "id": 2,
+            "product": "Shade Lavanda",
+            "buyer": "Carl Watson",
+            "email": "carlwat98@gmail.com",
+            "cep": "05010020"
+        }
+    ]
+}
