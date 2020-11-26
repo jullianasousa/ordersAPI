@@ -2,14 +2,23 @@
   "name": "ordersapi",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jullianasousa/ordersAPI.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jullianasousa/ordersAPI/issues"
+  },
+  "homepage": "https://github.com/jullianasousa/ordersAPI#readme",
   "dependencies": {
-    "axios": "^0.21.0"
+    "axios": "^0.21.0",
+    "express": "^4.17.1"
   },
   "type": "module"
 }
